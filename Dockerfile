@@ -1,4 +1,4 @@
-FROM registry.gitlab.com/tychodev1/gitlab-coe/images/app/ubi-nodejs:latest
+FROM registry.gitlab.com/tychodev1/gitlab-coe/images/cicd/ubi-nodejs:latest
 
 LABEL maintainer="TychoDev <cloud.ops@tychodev.com>"
 
