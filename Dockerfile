@@ -6,6 +6,6 @@ RUN npm install -g serverless \
     && npm config set prefix /usr/local
 RUN serverless --version
 
-USER 1001
+# USER 1001
 
 CMD ["echo", "This is a 'Purpose Built Image', It is not meant to be ran directly"]
