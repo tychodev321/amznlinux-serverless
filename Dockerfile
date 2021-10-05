@@ -21,6 +21,7 @@ RUN microdnf update -y \
     && microdnf install -y nodejs \
     && microdnf install -y npm \
     && microdnf install -y python39 \
+    && microdnf install -y findutils \
     && microdnf clean all \
     && rm -rf /var/cache/* /var/log/dnf* /var/log/yum.*
 
