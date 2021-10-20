@@ -39,7 +39,8 @@ RUN node --version \
     && yarn --version \
     && python3 --version \ 
     && pip3 --version \
-    && serverless --version
+    && serverless --version \
+    && docker --version
 
 # USER 1001
 
