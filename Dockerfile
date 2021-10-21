@@ -25,20 +25,28 @@ RUN yum update -y \
     && yum clean all \
     && rm -rf /var/cache/* /var/log/dnf* /var/log/yum.*
 
-RUN cd /opt \
-    && wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz \
-    && tar xzf Python-${PYTHON_VERSION}.tgz \
-    && cd Python-${PYTHON_VERSION} \
-    && ./configure --enable-optimizations \
+# Download Python
+WORKDIR /opt
+
+RUN wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz \
+    && tar xzf Python-${PYTHON_VERSION}.tgz
+
+# Install and Configure Python
+WORKDIR /opt/Python-${PYTHON_VERSION}
+
+RUN ./configure --enable-optimizations \
     && make altinstall \
-    && rm -f /opt/Python-3.9.6.tgz
+    && ln -s $(which python3.9) /usr/local/bin/python3 \ 
+    && rm -f /opt/Python-${PYTHON_VERSION}.tgz
     
+WORKDIR /
+RUN python3 --version && pip --version
 
 #RUN npm install --global yarn \
 #    && npm install -g serverless \
 #    && npm config set prefix /usr/local
 
-RUN pip install poetry
+#RUN pip install poetry
     
 #RUN node --version \ 
 #    && npm --version \ 
@@ -46,8 +54,6 @@ RUN pip install poetry
 #    && python3 --version \ 
 #    && pip --version \
 #    && serverless --version
-
-RUN python3 --version && pip --version
 
 # USER 1001
 
