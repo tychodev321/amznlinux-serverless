@@ -19,7 +19,7 @@ ENV PYTHON_VERSION=3.9.6 \
 
 RUN yum update -y \
     && yum -y install gcc openssl-devel bzip2-devel libffi-devel curl wget tar gzip make  \
-    && curl -sL https://rpm.nodesource.com/setup_14.x | bash - \
+    && curl -sL https://rpm.nodesource.com/setup_${NODEJS_VERSION}.x | bash - \
     && yum install -y nodejs \
     && yum install -y findutils \
     && yum clean all \
