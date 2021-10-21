@@ -1,4 +1,4 @@
-FROM amazonlinux:2
+FROM public.ecr.aws/amazonlinux/amazonlinux:2
 # https://hub.docker.com/_/amazonlinux
 
 LABEL maintainer="TychoDev <cloud.ops@tychodev.com>"
