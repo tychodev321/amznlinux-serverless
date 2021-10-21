@@ -38,12 +38,11 @@ RUN ./configure --enable-optimizations \
     && make altinstall \
     && ln -s $(which python3.9) /usr/local/bin/python3 \ 
     && rm -f /opt/Python-${PYTHON_VERSION}.tgz \
-    && yum install -y python3-pip \
-    && yum clean all \
-    && rm -rf /var/cache/* /var/log/dnf* /var/log/yum.*
-    
+    && curl -O https://bootstrap.pypa.io/get-pip.py \
+    && python3 get-pip.py --user
+
 WORKDIR /
-RUN python3 --version && pip3 --version
+RUN python3 --version && pip --version
 
 #RUN npm install --global yarn \
 #    && npm install -g serverless \
