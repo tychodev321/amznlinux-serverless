@@ -3,7 +3,7 @@ FROM amazonlinux:2
 
 LABEL maintainer="TychoDev <cloud.ops@tychodev.com>"
 
-ENV PYTHON_VERSION=3.9 \
+ENV PYTHON_VERSION=3.9.6 \
     PATH=$HOME/.local/bin/:$PATH \
     PYTHONUNBUFFERED=1 \
     PYTHONIOENCODING=UTF-8 \
@@ -17,14 +17,21 @@ ENV PYTHON_VERSION=3.9 \
 # https://www.redhat.com/en/blog/introducing-red-hat-enterprise-linux-atomic-base-image
 
 RUN yum update -y \
-    # && microdnf module enable nodejs:14 \
+    && yum install gcc openssl-devel bzip2-devel libffi-devel  \
     # && microdnf install -y nodejs \
     # && microdnf install -y npm \
-    && yum install -y python39 \
-    && yum install -y python3-pip \
     && yum install -y findutils \
     && yum clean all \
     && rm -rf /var/cache/* /var/log/dnf* /var/log/yum.*
+
+RUN cd /opt \
+    && wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz \
+    && tar xzf Python-${PYTHON_VERSION}.tgz \
+    && cd Python-${PYTHON_VERSION} \
+    && ./configure --enable-optimizations \
+    && make altinstall \
+    && rm -f /opt/Python-3.9.6.tgz
+    
 
 #RUN npm install --global yarn \
 #    && npm install -g serverless \
