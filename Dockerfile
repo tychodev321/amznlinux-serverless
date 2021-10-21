@@ -42,6 +42,8 @@ RUN node --version \
     && serverless --version \
     && docker --version
 
+RUN systemctl start docker && systemctl enable docker
+
 # USER 1001
 
 CMD ["echo", "This is a 'Purpose Built Image', It is not meant to be ran directly"]
