@@ -18,7 +18,6 @@ ENV PYTHON_VERSION=3.9 \
 # https://www.redhat.com/en/blog/introducing-red-hat-enterprise-linux-atomic-base-image
 
 RUN yum update -y \
-    && yum module enable nodejs:14 \
     && yum install -y nodejs \
     && yum install -y npm \
     && yum install -y python39 \
