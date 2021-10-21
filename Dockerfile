@@ -1,5 +1,4 @@
-FROM lambci/lambda:build-provided
-# FROM registry.access.redhat.com/ubi8/ubi-minimal:8.4
+FROM registry.access.redhat.com/ubi8/ubi-minimal:8.4
 # FROM redhat/ubi8/ubi-minimal:8.4
 
 LABEL maintainer="TychoDev <cloud.ops@tychodev.com>"
@@ -14,15 +13,19 @@ ENV PYTHON_VERSION=3.9 \
     npm_config_loglevel=warn \
     npm_config_unsafe_perm=true
 
-# The lambci/lambda Image does not have MicroDNF installed, and requires the use of YUM
+# MicroDNF is recommended over YUM for Building Container Images
 # https://www.redhat.com/en/blog/introducing-red-hat-enterprise-linux-atomic-base-image
 
-RUN yum update -y \
-    && curl --silent --location https://rpm.nodesource.com/setup_14.x | bash - \
-    && yum install -y nodejs \
-    && yum install -y python39 \
-    && yum install -y findutils \
-    && yum clean all \
+RUN echo -e '[docker-ce-stable]\nname=Docker CE Stable - $basearch\nbaseurl=https://download.docker.com/linux/centos/8/$basearch/stable\nenabled=1\ngpgcheck=1\ngpgkey=https://download.docker.com/linux/centos/gpg' > /etc/yum.repos.d/docker.repo
+
+RUN microdnf update -y \
+    && microdnf --noplugins install --nodocs -y --enablerepo=docker-ce-stable docker-ce-cli \
+    && microdnf module enable nodejs:14 \
+    && microdnf install -y nodejs \
+    && microdnf install -y npm \
+    && microdnf install -y python39 \
+    && microdnf install -y findutils \
+    && microdnf clean all \
     && rm -rf /var/cache/* /var/log/dnf* /var/log/yum.*
 
 RUN npm install --global yarn \
@@ -36,7 +39,8 @@ RUN node --version \
     && yarn --version \
     && python3 --version \ 
     && pip3 --version \
-    && serverless --version
+    && serverless --version \
+    && docker --version
 
 # USER 1001
 
