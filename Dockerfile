@@ -4,6 +4,7 @@ FROM amazonlinux:2
 LABEL maintainer="TychoDev <cloud.ops@tychodev.com>"
 
 ENV PYTHON_VERSION=3.9.6 \
+    PYTHON_PRFIX=3.9 \
     PATH=$HOME/.local/bin/:$PATH \
     PYTHONUNBUFFERED=1 \
     PYTHONIOENCODING=UTF-8 \
