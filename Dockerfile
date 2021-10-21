@@ -37,7 +37,10 @@ WORKDIR /opt/Python-${PYTHON_VERSION}
 RUN ./configure --enable-optimizations \
     && make altinstall \
     && ln -s $(which python3.9) /usr/local/bin/python3 \ 
-    && rm -f /opt/Python-${PYTHON_VERSION}.tgz
+    && rm -f /opt/Python-${PYTHON_VERSION}.tgz \
+    && yum install -y python3-pip \
+    && yum clean all \
+    && rm -rf /var/cache/* /var/log/dnf* /var/log/yum.*
     
 WORKDIR /
 RUN python3 --version && pip3 --version
