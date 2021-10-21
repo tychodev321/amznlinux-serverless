@@ -20,7 +20,6 @@ ENV PYTHON_VERSION=3.9 \
 RUN yum update -y \
     && curl --silent --location https://rpm.nodesource.com/setup_14.x | bash - \
     && yum install -y nodejs \
-    && yum install -y npm \
     && yum install -y python39 \
     && yum install -y findutils \
     && yum clean all \
