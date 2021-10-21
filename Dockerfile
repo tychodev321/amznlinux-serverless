@@ -40,7 +40,7 @@ RUN ./configure --enable-optimizations \
     && rm -f /opt/Python-${PYTHON_VERSION}.tgz
     
 WORKDIR /
-RUN python3 --version && pip --version
+RUN python3 --version && pip3 --version
 
 #RUN npm install --global yarn \
 #    && npm install -g serverless \
