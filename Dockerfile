@@ -37,16 +37,16 @@ RUN cd /opt \
 #    && npm install -g serverless \
 #    && npm config set prefix /usr/local
 
-RUN pip3 install poetry
+RUN pip install poetry
     
 #RUN node --version \ 
 #    && npm --version \ 
 #    && yarn --version \
 #    && python3 --version \ 
-#    && pip3 --version \
+#    && pip --version \
 #    && serverless --version
 
-RUN python3 --version && pip3 --version
+RUN python3 --version && pip --version
 
 # USER 1001
 
