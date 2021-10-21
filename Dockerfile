@@ -1,4 +1,5 @@
-FROM registry.access.redhat.com/ubi8/ubi-minimal:8.4
+FROM lambci/lambda:build-provided # Required for building AWS Lambdas with OS dependent packages
+# FROM registry.access.redhat.com/ubi8/ubi-minimal:8.4
 # FROM redhat/ubi8/ubi-minimal:8.4
 
 LABEL maintainer="TychoDev <cloud.ops@tychodev.com>"
@@ -16,10 +17,10 @@ ENV PYTHON_VERSION=3.9 \
 # MicroDNF is recommended over YUM for Building Container Images
 # https://www.redhat.com/en/blog/introducing-red-hat-enterprise-linux-atomic-base-image
 
-RUN echo -e '[docker-ce-stable]\nname=Docker CE Stable - $basearch\nbaseurl=https://download.docker.com/linux/centos/8/$basearch/stable\nenabled=1\ngpgcheck=1\ngpgkey=https://download.docker.com/linux/centos/gpg' > /etc/yum.repos.d/docker.repo
+#RUN echo -e '[docker-ce-stable]\nname=Docker CE Stable - $basearch\nbaseurl=https://download.docker.com/linux/centos/8/#$basearch/stable\nenabled=1\ngpgcheck=1\ngpgkey=https://download.docker.com/linux/centos/gpg' > /etc/yum.repos.d/docker.repo
 
 RUN microdnf update -y \
-    && microdnf --noplugins install --nodocs -y --enablerepo=docker-ce-stable docker-ce-cli \
+    #&& microdnf --noplugins install --nodocs -y --enablerepo=docker-ce-stable docker-ce-cli \
     && microdnf module enable nodejs:14 \
     && microdnf install -y nodejs \
     && microdnf install -y npm \
@@ -39,8 +40,8 @@ RUN node --version \
     && yarn --version \
     && python3 --version \ 
     && pip3 --version \
-    && serverless --version \
-    && docker --version
+    && serverless --version
+    #&& docker --version
 
 # USER 1001
 
