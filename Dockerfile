@@ -1,4 +1,5 @@
-FROM lambci/lambda:build-provided # Required for building AWS Lambdas with OS dependent packages
+FROM lambci/lambda:build-provided
+# Required for building AWS Lambdas with OS dependent packages
 # FROM registry.access.redhat.com/ubi8/ubi-minimal:8.4
 # FROM redhat/ubi8/ubi-minimal:8.4
 
