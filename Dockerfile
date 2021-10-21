@@ -18,6 +18,7 @@ ENV PYTHON_VERSION=3.9 \
 # https://www.redhat.com/en/blog/introducing-red-hat-enterprise-linux-atomic-base-image
 
 RUN yum update -y \
+    && curl --silent --location https://rpm.nodesource.com/setup_14.x | bash - \
     && yum install -y nodejs \
     && yum install -y npm \
     && yum install -y python39 \
