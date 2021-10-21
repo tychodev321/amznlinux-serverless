@@ -17,7 +17,7 @@ ENV PYTHON_VERSION=3.9.6 \
 # https://www.redhat.com/en/blog/introducing-red-hat-enterprise-linux-atomic-base-image
 
 RUN yum update -y \
-    && yum -y install gcc openssl-devel bzip2-devel libffi-devel wget  \
+    && yum -y install gcc openssl-devel bzip2-devel libffi-devel wget tar gzip  \
     # && microdnf install -y nodejs \
     # && microdnf install -y npm \
     && yum install -y findutils \
