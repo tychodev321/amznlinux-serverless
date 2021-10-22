@@ -42,7 +42,7 @@ RUN ./configure --enable-optimizations \
     && python3 get-pip.py --user
 
 WORKDIR /
-RUN python3 --version && pip --version
+RUN python3 --version && pip3 --version
 
 #RUN npm install --global yarn \
 #    && npm install -g serverless \
