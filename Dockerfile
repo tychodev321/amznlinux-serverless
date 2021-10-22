@@ -43,20 +43,19 @@ RUN ./configure --enable-optimizations \
     && rm get-pip.py
 
 WORKDIR /
-RUN python3 --version && pip --version
 
-#RUN npm install --global yarn \
-#    && npm install -g serverless \
-#    && npm config set prefix /usr/local
+RUN npm install --global yarn \
+    && npm install -g serverless \
+    && npm config set prefix /usr/local
 
-#RUN pip install poetry
+RUN pip install poetry
     
-#RUN node --version \ 
-#    && npm --version \ 
-#    && yarn --version \
-#    && python3 --version \ 
-#    && pip --version \
-#    && serverless --version
+RUN node --version \ 
+    && npm --version \ 
+    && yarn --version \
+    && python3 --version \ 
+    && pip --version \
+    && serverless --version
 
 # USER 1001
 
