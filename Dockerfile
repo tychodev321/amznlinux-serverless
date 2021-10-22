@@ -39,10 +39,11 @@ RUN ./configure --enable-optimizations \
     && ln -s $(which python3.9) /usr/local/bin/python3 \ 
     && rm -f /opt/Python-${PYTHON_VERSION}.tgz \
     && curl -O https://bootstrap.pypa.io/get-pip.py \
-    && python3 get-pip.py --user
+    && python3 get-pip.py \
+    && rm get-pip.py
 
 WORKDIR /
-RUN python3 --version && pip3 --version
+RUN python3 --version && pip --version
 
 #RUN npm install --global yarn \
 #    && npm install -g serverless \
