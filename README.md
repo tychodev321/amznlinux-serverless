@@ -1,1 +1,1 @@
-# ubi-serverless
+# amznlinux-serverless
