@@ -1,7 +1,7 @@
 FROM public.ecr.aws/amazonlinux/amazonlinux:2
 # https://hub.docker.com/_/amazonlinux
 
-LABEL maintainer="TychoDev <cloud.ops@tychodev.com>"
+LABEL maintainer=""
 
 ENV PYTHON_VERSION=3.9.6 \
     PYTHON_PRFIX=3.9 \
