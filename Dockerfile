@@ -44,19 +44,18 @@ RUN ./configure --enable-optimizations \
 
 WORKDIR /
 
-RUN pip3 --version
-
 RUN npm install --global yarn \
     && npm install -g serverless \
     && npm config set prefix /usr/local
 
-RUN pip install poetry
+# Make sure to upgrade pip3
+RUN pip3 install --upgrade pip && pip3 install poetry
     
 RUN node --version \ 
     && npm --version \ 
     && yarn --version \
     && python3 --version \ 
-    && pip --version \
+    && pip3 --version \
     && serverless --version
 
 # USER 1001
