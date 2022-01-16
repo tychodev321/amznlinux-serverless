@@ -44,6 +44,8 @@ RUN ./configure --enable-optimizations \
 
 WORKDIR /
 
+RUN pip3 --version
+
 RUN npm install --global yarn \
     && npm install -g serverless \
     && npm config set prefix /usr/local
