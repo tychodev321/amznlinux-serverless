@@ -12,7 +12,8 @@ ENV PYTHON_VERSION=3.9.6 \
     NODEJS_VERSION=14 \
     PATH=$HOME/.local/bin/:$PATH \
     npm_config_loglevel=warn \
-    npm_config_unsafe_perm=true
+    npm_config_unsafe_perm=true \
+    SERVERLESS_FRAMEWORK_VERSION=3.19.0
 
 # Amazon Linux only supports YUM
 # https://www.redhat.com/en/blog/introducing-red-hat-enterprise-linux-atomic-base-image
@@ -45,7 +46,7 @@ RUN ./configure --enable-optimizations \
 WORKDIR /
 
 RUN npm install --global yarn \
-    && npm install -g serverless \
+    && npm install -g serverless@${SERVERLESS_FRAMEWORK_VERSION} \
     && npm config set prefix /usr/local
 
 # Make sure to upgrade pip3
