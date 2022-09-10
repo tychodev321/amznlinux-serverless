@@ -23,6 +23,7 @@ RUN yum update -y \
     && curl -sL https://rpm.nodesource.com/setup_${NODEJS_VERSION}.x | bash - \
     && yum install -y nodejs \
     && yum install -y findutils \
+    && yum install -y zip \
     && yum clean all \
     && rm -rf /var/cache/* /var/log/dnf* /var/log/yum.*
 
