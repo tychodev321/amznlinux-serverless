@@ -29,6 +29,9 @@ RUN yum update -y \
 # Download Python
 WORKDIR /opt
 
+RUN npm install --global yarn \
+    && npm config set prefix /usr/local
+
 RUN wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz \
     && tar xzf Python-${PYTHON_VERSION}.tgz
 
