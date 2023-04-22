@@ -9,7 +9,7 @@ ENV PYTHON_VERSION=3.10.10 \
     PYTHONUNBUFFERED=1 \
     PYTHONIOENCODING=UTF-8 \
     PIP_NO_CACHE_DIR=off \
-    NODEJS_VERSION=16 \
+    NODEJS_VERSION=14 \
     PATH=$HOME/.local/bin/:$PATH \
     npm_config_loglevel=warn \
     npm_config_unsafe_perm=true
@@ -18,9 +18,10 @@ ENV PYTHON_VERSION=3.10.10 \
 # https://www.redhat.com/en/blog/introducing-red-hat-enterprise-linux-atomic-base-image
 
 RUN yum update -y \
-    && yum -y install gcc openssl-devel bzip2-devel libffi-devel curl wget tar gzip make which  \
+    && yum install -y gcc openssl-devel bzip2-devel libffi-devel curl wget tar gzip make which  \
     && curl -sL https://rpm.nodesource.com/setup_${NODEJS_VERSION}.x | bash - \
     && yum install -y nodejs \
+    && yum install -y npm \
     && yum install -y findutils \
     && yum install -y zip \
     && yum install -y yum-utils \
