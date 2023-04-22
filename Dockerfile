@@ -9,7 +9,7 @@ ENV PYTHON_VERSION=3.10.10 \
     PYTHONUNBUFFERED=1 \
     PYTHONIOENCODING=UTF-8 \
     PIP_NO_CACHE_DIR=off \
-    NODEJS_VERSION=14 \
+    NODEJS_VERSION=16 \
     PATH=$HOME/.local/bin/:$PATH \
     npm_config_loglevel=warn \
     npm_config_unsafe_perm=true
@@ -24,7 +24,7 @@ RUN yum update -y \
     && yum install -y npm \
     && yum install -y findutils \
     && yum install -y zip \
-    && yum install -y yum-utils \
+    # && yum install -y yum-utils \
     && yum-builddep python3 \
     && yum clean all \
     && rm -rf /var/cache/* /var/log/dnf* /var/log/yum.*
