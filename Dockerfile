@@ -43,8 +43,9 @@ RUN wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VER
 WORKDIR /opt/Python-${PYTHON_VERSION}
 
 RUN ./configure --enable-optimizations \
+    && make -j $(nproc) \
     && make altinstall \
-    && ln -s $(which python3.10) /usr/local/bin/python3 \ 
+    && ln -s $(which python3.10) /usr/local/bin/python \ 
     && rm -f /opt/Python-${PYTHON_VERSION}.tgz \
     && curl -O https://bootstrap.pypa.io/get-pip.py \
     && python get-pip.py \
