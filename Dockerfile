@@ -18,14 +18,13 @@ ENV PYTHON_VERSION=3.10.10 \
 # https://www.redhat.com/en/blog/introducing-red-hat-enterprise-linux-atomic-base-image
 
 RUN yum update -y \
-    && yum install -y build-essential zlib1g-dev libnss3-dev libssl-dev libreadline-dev \
-    && yum install -y libffi-dev libncurses5-dev libgdbm-dev \
-    && yum install -y gcc openssl-devel bzip2-devel curl wget tar gzip make which  \
+    && yum groupinstall y "Development Tools" \
+    && yum erase -y openssl-devel \
+    && yum install -y openssl11 openssl11-devel libffi-devel bzip2-devel \
     && curl -sL https://rpm.nodesource.com/setup_${NODEJS_VERSION}.x | bash - \
     && yum install -y nodejs \
     && yum install -y npm \
     && yum install -y findutils \
-    && yum-builddep python3 \
     && yum clean all \
     && rm -rf /var/cache/* /var/log/dnf* /var/log/yum.*
 
