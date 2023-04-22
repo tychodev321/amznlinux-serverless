@@ -46,19 +46,19 @@ RUN ./configure --enable-optimizations \
     && ln -s $(which python3.10) /usr/local/bin/python3 \ 
     && rm -f /opt/Python-${PYTHON_VERSION}.tgz \
     && curl -O https://bootstrap.pypa.io/get-pip.py \
-    && python3 get-pip.py \
+    && python get-pip.py \
     && rm get-pip.py
 
 WORKDIR /
 
-# Make sure to upgrade pip3
-RUN pip3 install --upgrade pip && pip3 install poetry
+# Make sure to upgrade pip
+RUN pip install --upgrade pip && pip install poetry
     
 RUN node --version \ 
     && npm --version \ 
     && yarn --version \
-    && python3 --version \ 
-    && pip3 --version
+    && python --version \ 
+    && pip --version
 
 # USER 1001
 
