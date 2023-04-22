@@ -3,13 +3,13 @@ FROM public.ecr.aws/amazonlinux/amazonlinux:2
 
 LABEL maintainer=""
 
-ENV PYTHON_VERSION=3.9.6 \
-    PYTHON_PRFIX=3.9 \
+ENV PYTHON_VERSION=3.10.10 \
+    PYTHON_PRFIX=3.10 \
     PATH=$HOME/.local/bin/:$PATH \
     PYTHONUNBUFFERED=1 \
     PYTHONIOENCODING=UTF-8 \
     PIP_NO_CACHE_DIR=off \
-    NODEJS_VERSION=14 \
+    NODEJS_VERSION=18 \
     PATH=$HOME/.local/bin/:$PATH \
     npm_config_loglevel=warn \
     npm_config_unsafe_perm=true
@@ -40,7 +40,7 @@ WORKDIR /opt/Python-${PYTHON_VERSION}
 
 RUN ./configure --enable-optimizations \
     && make altinstall \
-    && ln -s $(which python3.9) /usr/local/bin/python3 \ 
+    && ln -s $(which python3.10) /usr/local/bin/python3 \ 
     && rm -f /opt/Python-${PYTHON_VERSION}.tgz \
     && curl -O https://bootstrap.pypa.io/get-pip.py \
     && python3 get-pip.py \
