@@ -23,6 +23,8 @@ RUN yum update -y \
     && yum install -y nodejs \
     && yum install -y findutils \
     && yum install -y zip \
+    && yum install -y yum-utils \
+    && yum-builddep python3 \
     && yum clean all \
     && rm -rf /var/cache/* /var/log/dnf* /var/log/yum.*
 
