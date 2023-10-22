@@ -21,7 +21,7 @@ RUN yum update -y \
     && yum groupinstall -y "Development Tools" \
     && yum erase -y openssl-devel \
     && yum install -y openssl11 openssl11-devel libffi-devel bzip2-devel \
-    && curl -sL https://rpm.nodesource.com/setup_${NODEJS_VERSION}.x | bash - \
+ #   && curl -sL https://rpm.nodesource.com/setup_${NODEJS_VERSION}.x | bash - \
     && yum install -y wget \
     && yum install -y which \
     && yum install -y nodejs \
